@@ -22,7 +22,7 @@
   <version>0.0.1-SNAPSHOT</version>
 
   <properties>
-    <pulsar.version>2.0.0-incubating</pulsar.version>
+    <pulsar.version>2.0.0-incubating-SNAPSHOT</pulsar.version>
     <kryo.version>4.0.2</kryo.version>
   </properties>
 
@@ -30,6 +30,12 @@
     <dependency>
       <groupId>org.apache.pulsar</groupId>
       <artifactId>pulsar-client</artifactId>
+      <version>${pulsar.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.pulsar</groupId>
+      <artifactId>pulsar-functions-api</artifactId>
       <version>${pulsar.version}</version>
     </dependency>
 
