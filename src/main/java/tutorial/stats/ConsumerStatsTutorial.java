@@ -39,8 +39,11 @@ public class ConsumerStatsTutorial {
         do {
             i++;
             Message<byte[]> msg = consumer.receive();
-
+            log.info("{} {}" , i, msg.getMessageId());
             // No processing logic applied, just basic message acks
+            if(i==5){
+                log.info("negative ack");
+            }else
             consumer.acknowledge(msg);
         } while (i < limit);
 
