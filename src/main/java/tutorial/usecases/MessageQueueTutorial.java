@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 public class MessageQueueTutorial {
@@ -74,7 +75,7 @@ public class MessageQueueTutorial {
                 e.printStackTrace();
             }
         });
-        ConsumerBuilder<byte[]> consumerBuilder = client.newConsumer()
+        ConsumerBuilder<byte[]> consumerBuilder = client.newConsumer().negativeAckRedeliveryDelay(1, TimeUnit.SECONDS)
                 .topic(TOPIC_NAME)
                 .subscriptionName(SUBSCRIPTION_NAME)
                 .subscriptionType(SubscriptionType.Shared)
