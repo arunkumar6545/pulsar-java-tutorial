@@ -2,7 +2,6 @@ package tutorial.subscriptions;
 
 import org.apache.pulsar.client.api.ConsumerBuilder;
 import org.apache.pulsar.client.api.Message;
-import org.apache.pulsar.client.api.MessageBuilder;
 import org.apache.pulsar.client.api.Producer;
 import org.apache.pulsar.client.api.PulsarClient;
 import org.apache.pulsar.client.api.PulsarClientException;
@@ -44,12 +43,9 @@ public class SharedSubscriptionTutorial {
         });
 
         IntStream.range(0, 999).forEach(i -> {
-            Message<byte[]> msg = MessageBuilder.create()
-                    .setContent(String.format("message-%d", i).getBytes())
-                    .build();
 
             try {
-                producer.send(msg);
+                producer.send(String.format("message-%d", i).getBytes());
             } catch (PulsarClientException e) {
                 LOG.error(e.getMessage());
             }

@@ -17,7 +17,6 @@ package tutorial;
 
 import org.apache.pulsar.client.api.CompressionType;
 import org.apache.pulsar.client.api.Message;
-import org.apache.pulsar.client.api.MessageBuilder;
 import org.apache.pulsar.client.api.MessageId;
 import org.apache.pulsar.client.api.Producer;
 import org.apache.pulsar.client.api.PulsarClient;
@@ -56,13 +55,10 @@ public class ProducerTutorial {
             String content = String.format("hello-pulsar-%d", i);
 
             // Build a message object
-            Message<byte[]> msg = MessageBuilder.create()
-                    .setContent(content.getBytes())
-                    .build();
 
             // Send each message and log message content and ID when successfully received
             try {
-                MessageId msgId = producer.send(msg);
+                MessageId msgId = producer.send(content.getBytes());
 
                 log.info("Published message '{}' with the ID {}", content, msgId);
             } catch (PulsarClientException e) {

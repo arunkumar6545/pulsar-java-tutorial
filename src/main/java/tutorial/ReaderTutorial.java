@@ -31,22 +31,22 @@ public class ReaderTutorial {
                 .startMessageId(MessageId.latest)
                 .create();
 
-        log.info("Reading messages from earliest ({})", MessageId.earliest);
-        do {
-            Message<byte[]> msg = earliestReader.readNext();
-            log.info("Message received with ID {}", msg.getMessageId());
-
-            if (earliestReader.hasReachedEndOfTopic()) {
-                log.info("Done reading from earliest");
-                earliestReader.close();
-            }
-        } while (!earliestReader.hasReachedEndOfTopic());
+//        log.info("Reading messages from earliest ({})", MessageId.earliest);
+//        do {
+//            Message<byte[]> msg = earliestReader.readNext();
+//            log.info("1 Message received with ID {}", msg.getMessageId());
+//
+//            if (earliestReader.hasReachedEndOfTopic()) {
+//                log.info("Done reading from earliest");
+//                earliestReader.close();
+//            }
+//        } while (!earliestReader.hasReachedEndOfTopic());
 
 
         log.info("Reading messages from latest ({})", MessageId.latest);
         do {
             Message<byte[]> msg = latestReader.readNext();
-            log.info("Message received with ID {}", msg.getMessageId());
+            log.info("2 Message received with ID {}", msg.getMessageId());
 
             if (latestReader.hasReachedEndOfTopic()) {
                 log.info("Done reading from latest");

@@ -1,7 +1,6 @@
 package tutorial.async;
 
 import org.apache.pulsar.client.api.CompressionType;
-import org.apache.pulsar.client.api.MessageBuilder;
 import org.apache.pulsar.client.api.PulsarClient;
 import org.apache.pulsar.client.api.PulsarClientException;
 import org.slf4j.Logger;
@@ -27,24 +26,24 @@ public class AsyncProducerTutorial {
                 .createAsync()
                 .thenAccept(producer -> {
                     log.info("Producer created asynchronously for the topic {}", TOPIC_NAME);
-
-                    MessageBuilder<byte[]> msgBuilder = MessageBuilder.create();
-
-                    // Send 10 messages with varying content
-                    IntStream.range(1, 11).forEach(i -> {
-                        byte[] msgContent = String.format("hello-pulsar-%d", i).getBytes();
-                        msgBuilder.setContent(msgContent);
-                        producer.sendAsync(msgBuilder.build())
-                                .handle((msgId, e) -> {
-                                    if (e != null) {
-                                        e.printStackTrace();
-                                    }
-
-                                    log.info("Successfully produced message with ID {}",
-                                            new String(msgId.toByteArray()));
-                                    return null;
-                                });
-                    });
+//
+//                    MessageBuilder<byte[]> msgBuilder = MessageBuilder.create();
+//
+//                    // Send 10 messages with varying content
+//                    IntStream.range(1, 11).forEach(i -> {
+//                        byte[] msgContent = String.format("hello-pulsar-%d", i).getBytes();
+//                        msgBuilder.setContent(msgContent);
+//                        producer.sendAsync(msgBuilder.build())
+//                                .handle((msgId, e) -> {
+//                                    if (e != null) {
+//                                        e.printStackTrace();
+//                                    }
+//
+//                                    log.info("Successfully produced message with ID {}",
+//                                            new String(msgId.toByteArray()));
+//                                    return null;
+//                                });
+//                    });
                 })
                 .exceptionally(e -> {
                     log.error(e.toString());
